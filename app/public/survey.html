@@ -2,13 +2,11 @@
 <html>
 
 <head>
-    <!-- <meta charset="UTF-8"> -->
     <title>FriendFinder</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
@@ -162,13 +160,13 @@
                     </select>
                 </div>
                 <div>
-                    <button class="btn waves-effect waves-light" type="submit" name="action" id="submitButton">Submit Responses</button>
+                    <button class="btn waves-effect waves-light" type="submit" id="submitButton" onclick="addinfo()">Submit Responses</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Survey response -->
+
     <div id="modal1" class="modal">
         <div class="modal-content">
             <h4>Closest Friend Match</h4>
@@ -176,28 +174,26 @@
             <h5 id="userMatch"></h5>
             <img id="userMatchImage" class="materialboxed" width="650" src="">
         </div>
-        <div class="modal-footer">
+        <div>
             <a href="survey.html" class="modal-action modal-close waves-effect waves-green btn-flat">Fill Again!</a>
         </div>
     </div>
 
-    <!-- Find a matching friend -->
     <script type="text/javascript">
         $(document).ready(function () {
             $('select').material_select();
             $('.modal').modal({
-                dismissible: false, // Modal can be dismissed by clicking outside of the modal
-                opacity: .5, // Opacity of modal background
-                inDuration: 300, // Transition in duration
-                outDuration: 200, // Transition out duration
-                startingTop: '4%', // Starting top style attribute
-                endingTop: '10%' // Ending top style attribute
+                dismissible: false,
+                opacity: .5,
+                inDuration: 300,
+                outDuration: 200,
+                startingTop: '4%',
+                endingTop: '10%'
             });
         });
-        // Activate submit button
+
         $('#submitButton').on('click', function (event) {
             event.preventDefault();
-            // Gather user inputs
             var userInput = {
                 name: $('#userName').val().trim(),
                 photo: $('#userPhoto').val().trim(),
@@ -214,7 +210,6 @@
                     $('#question10').val().trim()
                 ]
             };
-            // Add user inputs to friends list
             $.post('../data/friends.js', userInput)
                 .done(function (data) {
                     $('#userMatch').html(data.matchName);
