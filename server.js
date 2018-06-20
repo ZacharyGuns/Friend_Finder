@@ -10,11 +10,13 @@ app.use(bodyParser.json());
 
 // need help here, we're not appending the survey info,
 // we want to get an answer back with the user input
-function addinfo() {
-  $(".input-field").prompt(friendList);
-}
+// function addinfo() {
+//   $(".input-field").prompt(friendList);
+// }
+
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
-  });
-  
+  console.log("App listening on PORT " + PORT);
+});

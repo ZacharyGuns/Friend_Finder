@@ -210,7 +210,7 @@
                     $('#question10').val().trim()
                 ]
             };
-            $.post('../data/friends.js', userInput)
+            $.post('/api/friends', userInput)
                 .done(function (data) {
                     $('#userMatch').html(data.matchName);
                     $("#userMatchImage").attr("src", data.matchImage);
